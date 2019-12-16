@@ -1,0 +1,61 @@
+##########################
+### data type settings ###
+##########################
+
+# so far, new_spectrum_analyzer and old_spectrum_analyzer only
+"equip_type": "put equip type"
+
+##############################
+### data analysis settings ### 
+##############################
+
+# set calculation type
+# so far, raw, diff and nolmalize only
+"calc_type": "raw"
+"std_data_file": "file name without suffix which is used for normalization"
+
+# if you want convolute your data, put the number of convolusion window
+# if you put 0, data won't be convoluted
+"convolve": 0
+
+#########################################
+### set graph parameter               ###
+### the other parameters set at utils ###
+#########################################
+
+# can be empty
+"xlim": 
+  # put lower limit of x
+  -
+  # put upper limit of x
+  - 
+
+# can be empty
+"ylim":
+  # put lower limit of y
+  -
+  # put upper limit of y
+  - 
+
+# you can set the number of xticks if you want
+"xtick_num": null
+
+# you can set label
+"xlabel": "Wavelength [nm]"
+"ylabel": "Intensity [dBm]"
+
+####################
+### fig settings ###
+####################
+
+
+# if not being set, it will be datetime
+"fig_name": ""
+
+# fig size
+"fig_size":
+  # wide
+  - 12
+
+  # height
+  - 8
