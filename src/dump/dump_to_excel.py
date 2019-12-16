@@ -46,6 +46,8 @@ def get_dump_data(params):
 
   if params["calc_type"] == "diff":
     return sobj.diff(params["std_data_file"], params["convolve"])
+  elif params["calc_type"] == "normalize":
+    return sobj.normalize(params["std_data_file"], params["convolve"])
   else:
     return sobj.raw_data(params["convolve"])
 

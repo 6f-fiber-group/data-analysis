@@ -36,7 +36,7 @@ class NewSpectrumAnalyzerManager(NewSpectrumAnalyzer):
 
   def normalize(self, std_key, convolve=0):
     normalized_intensity = {
-      key: list(map(lambda a, b: a - b, val, self.intensity[std_key]))
+      key: list(map(lambda a, b: a / b, val, self.intensity[std_key]))
       for key, val in self.intensity.items()
     }
 
