@@ -1,0 +1,28 @@
+##########################
+### data type settings ###
+##########################
+
+# so far, new_spectrum_analyzer and old_spectrum_analyzer only
+"equip_type": "new_spectrum_analyzer"
+
+##############################
+### data analysis settings ### 
+##############################
+
+# set calculation type
+# so far, raw, diff and nolmalize only
+"calc_type": "raw"
+"std_data_file": "file name without suffix which is used for normalization"
+
+# if you want convolute your data, put the number of convolusion window
+# if you put 0, data won't be convoluted
+"convolve": 0
+
+
+#####################
+### file settings ###
+#####################
+
+
+# if not being set, it will be datetime
+"file_name": ""
