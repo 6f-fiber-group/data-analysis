@@ -2,6 +2,9 @@ import os
 import datetime
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
+import matplotlib.font_manager as font_manager
+
 import utils
 
 utils.set_plot_params()
@@ -11,7 +14,19 @@ class Plot():
   def __init__(self, params):
     self.params = params
 
+  def set_font(self):
+    font_dirs = ["./fonts",]
+    font_files = font_manager.findSystemFonts(fontpaths=font_dirs)
+    font_list = font_manager.createFontList(font_files)
+    font_manager.fontManager.ttflist.extend(font_list)
+
+    fp = font_manager.FontProperties(fname=os.path.join("./fonts", self.params["font"]))
+    rcParams["font.family"] = fp.get_name()
+
   def set_params(self):
+    if self.params["font"]:
+      self.set_font()
+
     plt.xlabel(self.params["xlabel"])
     plt.ylabel(self.params["ylabel"])
     plt.xlim(self.params["xlim"] if self.params["xlim"] else plt.xlim())

@@ -44,6 +44,10 @@
 "xlabel": "Wavelength [nm]"
 "ylabel": "Intensity [dBm]"
 
+# set font by refering to ./fonts
+# ex) ipaexg.ttf
+"font": null
+
 ####################
 ### fig settings ###
 ####################

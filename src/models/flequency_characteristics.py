@@ -22,7 +22,7 @@ class FlequencyCharacteristics():
     self.phase_shift = data["ps"]
 
   def get_flequency_characteristics_data(self):
-    fleq = {}
+    freq = {}
     sen = {}
     ref = {}
     IO = {}
@@ -33,14 +33,14 @@ class FlequencyCharacteristics():
 
         df = pd.read_csv(f, engine='python')
 
-        fleq[f.stem] = df["Freq [Hz]"].tolist()
+        freq[f.stem] = df["Freq [Hz]"].tolist()
         sen[f.stem] = df["Sens [dB]"].tolist()
         ref[f.stem] = df["Ref [a.u.]"].tolist()
         IO[f.stem] = df["I/O ratio [dB/a.u.]"].tolist()
         ps[f.stem] = df["Phase Shift [rad]"].tolist()
 
     return {
-      "freq": fleq,
+      "freq": freq,
       "sen": sen,
       "ref": ref,
       "IO": IO,
