@@ -6,7 +6,7 @@ import pandas as pd
 class NewSpectrumAnalyzer():
   def __init__(self, root):
     self.root = pathlib.Path(root)
-    self.wavelength = []
+    self.wavelength = {}
     self.intensity = {}
 
     self.fill_data()
@@ -14,22 +14,21 @@ class NewSpectrumAnalyzer():
   def fill_data(self):
     data = self.get_new_spectrum_analyzer_data()
 
-    self.wavelength = data["wavelength"]
-    self.intensity = data["intensity"]
+    self.wavelength = data["wl"]
+    self.intensity = data["it"]
 
   def get_new_spectrum_analyzer_data(self):
-    intensity = {}
+    wl = {}
+    it = {}
     for f in self.root.iterdir():
         if f.suffix != ".CSV":
             continue
 
         df = self.read_csv_data(f)
-        intensity[f.stem] = df[1].tolist()
+        wl[f.stem] = df[0].tolist()
+        it[f.stem] = df[1].tolist()
 
-    return {
-      "wavelength": df[0].tolist(),
-      "intensity": intensity
-      }
+    return {"wl": wl, "it": it}
 
   def read_csv_data(self, csv_file):
     with open(csv_file, "r") as f:

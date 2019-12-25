@@ -38,11 +38,12 @@ class Plot():
   def plot(self, data):
     fig = plt.figure(figsize=self.params["fig_size"])
     
-    x = data.pop("x")
-    data_len = len(data["y"])
-    for idx, d in enumerate(data["y"].items()):
-      label, y = d
-      plt.plot(x, y, label=label, ls=ls[(data_len + idx) % len(ls)], lw=3)
+    data_len = len(data["x"])
+    for idx, d in enumerate(zip(data["x"].items(), data["y"].items())):
+      x, y = d
+      xkey, xval = x
+      ykey, yval = y
+      plt.plot(xval, yval, label=xkey, ls=ls[(data_len + idx) % len(ls)], lw=3)
 
     self.set_params()
     plt.show()

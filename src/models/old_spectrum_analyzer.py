@@ -5,7 +5,7 @@ import pandas as pd
 class OldSpectrumAnalyzer():
   def __init__(self, root):
     self.root = pathlib.Path(root)
-    self.wavelength = []
+    self.wavelength = {}
     self.intensity = {}
 
     self.fill_data()
@@ -13,19 +13,18 @@ class OldSpectrumAnalyzer():
   def fill_data(self):
     data = self.get_old_spectrum_analyzer_data()
 
-    self.wavelength = data["wavelength"]
-    self.intensity = data["intensity"]
+    self.wavelength = data["wl"]
+    self.intensity = data["it"]
 
   def get_old_spectrum_analyzer_data(self):
-    intensity = {}
+    wl = {}
+    it = {}
     for f in self.root.iterdir():
         if f.suffix != ".txt":
             continue
 
         df = pd.read_csv(f, header=None, engine='python', sep="\t")
-        intensity[f.stem] = df[1].tolist()
+        wl[f.stem] = df[0].tolist()
+        it[f.stem] = df[1].tolist()
 
-    return {
-      "wavelength": df[0].tolist(),
-      "intensity": intensity
-      }
+    return {"wl": wl, "it": it}
