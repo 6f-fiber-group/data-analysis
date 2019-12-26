@@ -15,16 +15,18 @@ def dump(data, params):
   sheet = wb.active
 
   sheet.cell(1,1, "x")
-  sheet.cell(2,1, "wavelength")
-  for idx, x in enumerate(data["x"]):
-    sheet.cell(idx+3, 1, x)
+  for col_idx_x, d in enumerate(data["x"].items()):
+    label, x = d
+    sheet.cell(2, col_idx_x + 1, label)
+    for row_idx, val in enumerate(x):
+      sheet.cell(row_idx+3, col_idx_x + 1, val)
 
-  sheet.cell(1, 3, "y")
-  for col_idx, d in enumerate(data["y"].items()):
+  sheet.cell(1, col_idx_x + 3, "y")
+  for col_idx_y, d in enumerate(data["y"].items()):
     label, y = d
-    sheet.cell(2, col_idx+3, label)
+    sheet.cell(2, col_idx_x + col_idx_y + 3, label)
     for row_idx, val in enumerate(y):
-      sheet.cell(row_idx+3, col_idx+3, val)
+      sheet.cell(row_idx+3, col_idx_x + col_idx_y + 3, val)
 
   save(wb)
 
